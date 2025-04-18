@@ -1,0 +1,37 @@
+# Sensor Simulation Parameters
+sensors:
+  co2:
+    min_value: 350  # ppm
+    max_value: 1000
+    noise_level: 0.1
+  ph:
+    min_value: 5.5
+    max_value: 7.5
+    noise_level: 0.05
+  moisture:
+    min_value: 20  # percentage
+    max_value: 80
+    noise_level: 0.08
+
+# Time Series Parameters
+sampling_rate: 300  # seconds (5 minutes)
+sequence_length: 12  # 1-hour window
+
+# Model Parameters
+cnn:
+  input_size: 4000
+  num_channels: 1
+  num_classes: 1
+
+transformer:
+  num_features: 6
+  num_heads: 4
+  num_layers: 2
+  
+# Training Parameters
+batch_size: 32
+learning_rate: 0.001
+epochs: 50
+
+# Thresholds
+co2_flux_alert: 2.5  # grams of CO2/m²/hour
