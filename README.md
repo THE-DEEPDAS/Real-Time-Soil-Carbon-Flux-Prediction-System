@@ -1,3 +1,101 @@
+# Soil Bioinformatics ML Project
+
+This project implements a machine learning system for soil monitoring using simulated sensor data. The system processes CO2, pH, and moisture sensor data to predict soil CO2 flux.
+
+## Project Structure
+
+```
+├── configs/                  # Configuration files
+│   └── simulation_config.yaml
+├── data/                    # Data storage
+│   ├── external/           # External data sources
+│   ├── processed/          # Processed datasets
+│   └── raw/                # Raw sensor data
+├── models/                  # Trained models
+│   ├── fused_model/        # Future: Multi-sensor fusion model
+│   ├── nanopore_cnn/       # Future: Nanopore sequencing model
+│   └── time_series/        # Time series prediction model
+├── notebooks/              # Jupyter notebooks
+│   └── simulation_demo.ipynb
+└── src/                    # Source code
+    ├── data_pipeline/      # Data collection
+    ├── preprocessing/      # Data preprocessing
+    ├── training/          # Model training
+    └── edge_deployment/   # Edge device deployment
+```
+
+## Setup
+
+1. Create a Python virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Running the Simulation Demo
+
+1. Start Jupyter Notebook:
+```bash
+jupyter notebook
+```
+
+2. Open `notebooks/simulation_demo.ipynb` to see the data simulation and model training process.
+
+### Training the Model
+
+Run the training script:
+```bash
+python src/training/model_trainer.py
+```
+
+### Running Edge Inference
+
+To start the edge inference system that continuously processes sensor data:
+```bash
+python src/edge_deployment/inference.py
+```
+
+## Components
+
+1. **Sensor Simulation (`src/data_pipeline/sensor_simulator.py`)**
+   - Simulates CO2, pH, and moisture sensor data
+   - Generates realistic patterns with configurable noise
+
+2. **Data Processing (`src/preprocessing/data_processor.py`)**
+   - Scales and normalizes sensor data
+   - Creates time series sequences for model input
+
+3. **Model Training (`src/training/model_trainer.py`)**
+   - Implements a transformer-based time series model
+   - Trains on processed sensor data
+
+4. **Edge Deployment (`src/edge_deployment/inference.py`)**
+   - Runs continuous inference on new sensor data
+   - Provides real-time CO2 flux predictions
+   - Alerts on threshold violations
+
+## Configuration
+
+Edit `configs/simulation_config.yaml` to adjust:
+- Sensor simulation parameters
+- Model architecture
+- Training parameters
+- Alert thresholds
+
+## Future Enhancements
+
+1. Integration with real sensor hardware
+2. Implementation of nanopore sequencing analysis
+3. Multi-sensor fusion model
+4. Enhanced alerting and monitoring system
+
 Phase 1: Project Setup & Hardware Integration
 1. Define Scope & Tools
 Objective: Predict soil carbon flux (grams of CO2/m²/hour) using real-time microbial DNA and sensor data.
